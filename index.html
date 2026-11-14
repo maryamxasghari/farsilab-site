@@ -71,12 +71,7 @@
       <div>
         <h2>Join the FarsiLab family!<span class="fa">به خانواده‌ی ما بپیوندید!</span></h2>
         <p>Get <b>10% off</b> your next printable. Only news: new packs, songs and special coupons. No spam. For parents and teachers.</p>
-        <form id="signup" action="#" method="post" target="_blank">
-          <label class="fa" for="email" hidden>Email</label>
-          <input id="email" type="email" name="email_address" placeholder="Your email address" required aria-label="Your email address">
-          <button type="submit">Send my coupon</button>
-        </form>
-        <p class="note" id="signup-note" hidden>Our list opens very soon! Follow us on Instagram so you don't miss it. 💛</p>
+        <script async data-uid="0d43b7cd46" src="https://farsilab.kit.com/0d43b7cd46/index.js"></script>
         <small>By joining you agree to receive FarsiLab emails. Unsubscribe anytime with one click. We never share your email. See our <a href="privacy.html">privacy note</a>.</small>
       </div>
       <img src="assets/fifi_medal.webp" alt="Fifi holding a medal" loading="lazy">
@@ -96,15 +91,5 @@
   </div>
 </footer>
 
-<script>
-  // Paste the Kit form ID here once the Kit account exists (Kit > Grow > Landing pages & forms > embed > HTML).
-  const KIT_FORM_ID = "";
-  const form = document.getElementById("signup");
-  if (KIT_FORM_ID) {
-    form.action = "https://app.kit.com/forms/" + KIT_FORM_ID + "/subscriptions";
-  } else {
-    form.addEventListener("submit", e => { e.preventDefault(); document.getElementById("signup-note").hidden = false; });
-  }
-</script>
 </body>
 </html>
