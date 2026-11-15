@@ -131,3 +131,17 @@ footer p { margin: 6px 0; max-width: 620px; }
   .hero p.lead { font-size: 17px; }
   .hero-cta { margin-top: 14px; }
 }
+
+/* Kit signup form: show the whole email on phones */
+.formkit-form[data-uid="0d43b7cd46"] { max-width: 100% !important; }
+.formkit-form[data-uid="0d43b7cd46"] .formkit-input {
+  font-size: 16px !important;
+  padding: 12px 14px !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+}
+@media (max-width: 600px) {
+  .formkit-form[data-uid="0d43b7cd46"] [data-style="clean"],
+  .formkit-form[data-uid="0d43b7cd46"] .formkit-column { padding: 16px 10px !important; }
+}
