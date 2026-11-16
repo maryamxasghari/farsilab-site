@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FarsiLab · Play with Fifi</title>
+<meta name="description" content="Online Farsi games and activities for kids that go with FarsiLab printable packs.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Vazirmatn:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="play.css">
+</head>
+<body>
+<div class="wrap">
+  <a class="back top" href="index.html">← Back to home</a>
+
+  <header class="hero play-hero">
+    <h1>Play with Fifi!<span class="fa">با فی‌فی بازی کنیم!</span></h1>
+    <p class="lead">Online games and activities that go with our printable packs. Play on a phone, tablet or computer.</p>
+  </header>
+
+  <div class="how" id="how">
+    <b>Already bought one?</b> Scan the QR code or tap the link in your PDF and it unlocks here. You can also tap <b>I have a code</b> on its card.
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <div class="play-grid" id="grid"></div>
+
+  <p class="center"><a class="back" href="index.html">← Back to home</a></p>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p><b>© 2026 FarsiLab. All rights reserved.</b> Games and activities are for the buyer's own family or classroom. Please do not share codes or links. <a href="terms.html">Terms of use &amp; copyright</a></p>
+  </div>
+</footer>
+
+<div class="player" id="player" hidden>
+  <div class="player-bar">
+    <button id="close" type="button">← Back to Play</button>
+    <span id="ptitle"></span>
+  </div>
+  <iframe id="frame" title="FarsiLab activity" allow="autoplay"></iframe>
+</div>
+
+<script src="packs.js"></script>
+<script src="play.js"></script>
+</body>
+</html>
