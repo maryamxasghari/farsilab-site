@@ -41,3 +41,5 @@
 .player iframe { flex: 1; width: 100%; border: 0; background: var(--cream); }
 body.playing { overflow: hidden; }
 .codebox[hidden], .pbtn[hidden] { display: none; }
+.state.soon { color: var(--orange); font-size: 17px; }
+.how[hidden] { display: none; }

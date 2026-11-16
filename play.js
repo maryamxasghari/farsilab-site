@@ -3,16 +3,17 @@
 // Buyers get a link like  play.html#<id>=<CODE>  (and a QR code of it) in their PDF.
 // To add one: lock it with lock_play_item.py (private repo), put the .bin in play/, add an entry here.
 // etsy: paste the listing's own link once it is live. Empty = button goes to the shop.
+// soon: true = not for sale yet: the card says "Coming soon" with no Etsy or code button (its unlock link still works for testing).
 const PLAY_ITEMS = [
   {
     id: "colors-game", kind: "Game", title: "Color game", fa: "بازی رنگ‌ها",
     blurb: "Read the color word in Farsi and tap the right paint splash. Six colors, stars and a medal from Fifi.",
-    art: "blobs", bg: "#FFF1D0", etsy: ""
+    art: "blobs", bg: "#FFF1D0", etsy: "", soon: true
   },
   {
     id: "trace-letters", kind: "Activity", title: "Trace the letters", fa: "تمرین نوشتن",
     blurb: "Trace big Farsi letters with a finger. Fifi checks the tracing and gives a star for each letter.",
-    art: "آ ب", bg: "#DDF1F0", etsy: ""
+    art: "آ ب", bg: "#DDF1F0", etsy: "", soon: true
   }
 ];
 
@@ -52,6 +53,7 @@ const PLAY_ITEMS = [
 
   function render() {
     const grid = $("grid"); grid.innerHTML = "";
+    $("how").hidden = PLAY_ITEMS.every(x => x.soon);   // nothing to buy yet: no "Already bought one?" box
     PLAY_ITEMS.forEach(it => {
       const open = !!codes[it.id];
       const card = document.createElement("div");
@@ -64,6 +66,7 @@ const PLAY_ITEMS = [
           "<p>" + it.blurb + "</p>" +
           (open
             ? '<div class="state unlocked">✓ Unlocked on this device</div><div class="actions"><button class="pbtn go" type="button" data-play>▶ Play</button></div>'
+            : it.soon ? '<div class="state soon">⏳ Coming soon</div>'
             : '<div class="state locked">🔒 Locked</div><div class="actions">' +
               '<a class="pbtn etsy" target="_blank" rel="noopener" href="' + (it.etsy || shop) + '">Get it on Etsy</a>' +
               '<button class="pbtn code" type="button" data-code>I have a code</button>' +
