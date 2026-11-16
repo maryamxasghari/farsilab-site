@@ -48,7 +48,7 @@ a { color: var(--teal); }
 .btn .fa { font-size: 17px; }
 .b-news { background: var(--teal); }
 .b-etsy { background: var(--orange); } .b-yt { background: var(--pink); } .b-ig { background: var(--purple); }
-.b-fb { background: var(--blue); } .b-tg { background: #229ED9; }
+.b-play { background: var(--green); } .b-fb { background: var(--blue); } .b-tg { background: #229ED9; }
 .b-soon { background: #fff; color: var(--gray); border: 3px dashed #c8c8c8; box-shadow: none; cursor: default; }
 .b-soon:hover { transform: none; box-shadow: none; }
 .b-soon .ico { background: #f1efe9; }
