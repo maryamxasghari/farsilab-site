@@ -53,7 +53,6 @@ const PLAY_ITEMS = [
 
   function render() {
     const grid = $("grid"); grid.innerHTML = "";
-    $("how").hidden = PLAY_ITEMS.every(x => x.soon);   // nothing to buy yet: no "Already bought one?" box
     PLAY_ITEMS.forEach(it => {
       const open = !!codes[it.id];
       const card = document.createElement("div");
@@ -118,6 +117,100 @@ const PLAY_ITEMS = [
   $("close").onclick = () => {
     $("player").hidden = true; document.body.classList.remove("playing");
     $("frame").srcdoc = ""; $("frame").removeAttribute("srcdoc");
+  };
+
+  // Unlock with just a code: try it on every item that is not unlocked yet.
+  async function unlockAny(code, id) {
+    const list = id ? PLAY_ITEMS.filter(x => x.id === id) : PLAY_ITEMS.filter(x => !codes[x.id]);
+    for (const it of list) {
+      try { await unlock(it.id, code); codes[it.id] = norm(code); save(); return it; } catch (x) { if (x.message === "missing") throw x; }
+    }
+    return null;
+  }
+  function unlocked(it) {
+    render();
+    toast("🎉 " + it.title + " is unlocked on this device! Tap Play.", true);
+    const card = $("card-" + it.id); if (card) card.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+  // Read what a QR code says: the PDF link (play.html#<id>=<CODE>) or just a code.
+  function parseScan(text) {
+    const t = (text || "").trim();
+    const m = decodeURIComponent(t.split("#")[1] || "").match(/^([a-z0-9-]+)=(.+)$/i);
+    if (m) return { id: m[1], code: m[2] };
+    if (/^[A-Za-z0-9 -]{6,30}$/.test(t)) return { id: null, code: t };
+    return null;
+  }
+
+  // Type a code
+  $("typeBtn").onclick = () => { const f = $("anyCode"); f.hidden = !f.hidden; if (!f.hidden) f.querySelector("input").focus(); };
+  $("anyCode").onsubmit = async e => {
+    e.preventDefault();
+    const f = $("anyCode"), input = f.querySelector("input"), err = f.querySelector(".err"), btn = f.querySelector("button");
+    if (norm(input.value).length < 6) { err.textContent = "Please type the code from your PDF."; return; }
+    btn.disabled = true; btn.textContent = "Checking…"; err.textContent = "";
+    try {
+      const it = await unlockAny(input.value);
+      btn.disabled = false; btn.textContent = "Unlock";
+      if (it) { input.value = ""; f.hidden = true; unlocked(it); }
+      else err.textContent = "That code does not open any game here. Check the code in your PDF.";
+    } catch (x) { btn.disabled = false; btn.textContent = "Unlock"; err.textContent = "Could not check it. Check your internet and try again."; }
+  };
+
+  // Scan a QR code with the camera (or from a photo)
+  let stream = null, scanning = false;
+  const scanMsg = (txt, cls) => { const m = $("scanMsg"); m.textContent = txt; m.className = "scan-msg" + (cls ? " " + cls : ""); };
+  function stopScan() {
+    scanning = false;
+    if (stream) { stream.getTracks().forEach(tr => tr.stop()); stream = null; }
+    $("scanner").hidden = true;
+  }
+  async function handleScan(text) {
+    const r = parseScan(text);
+    if (!r) { scanMsg("That QR code is not a FarsiLab unlock code.", "bad"); return false; }
+    scanMsg("Unlocking…", "ok");
+    try {
+      const it = await unlockAny(r.code, r.id && item(r.id) ? r.id : null);
+      if (it) { stopScan(); unlocked(it); return true; }
+      scanMsg("This code does not open any game here.", "bad"); return false;
+    } catch (x) { scanMsg("Could not check it. Check your internet and try again.", "bad"); return false; }
+  }
+  function decode(source, w, h) {
+    const c = document.createElement("canvas"); c.width = w; c.height = h;
+    const ctx = c.getContext("2d", { willReadFrequently: true }); ctx.drawImage(source, 0, 0, w, h);
+    const res = window.jsQR ? jsQR(ctx.getImageData(0, 0, w, h).data, w, h) : null;
+    return res && res.data;
+  }
+  $("scanBtn").onclick = async () => {
+    $("scanner").hidden = false; scanMsg("Point the camera at the QR code.");
+    const v = $("scanVideo");
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }, audio: false });
+      v.srcObject = stream; await v.play(); scanning = true;
+      const tick = async () => {
+        if (!scanning) return;
+        if (v.readyState >= 2 && v.videoWidth) {
+          const s = Math.min(640, v.videoWidth), k = s / v.videoWidth;
+          const text = decode(v, s, Math.round(v.videoHeight * k));
+          if (text) { scanning = false; if (await handleScan(text)) return; setTimeout(() => { if (stream) { scanning = true; tick(); } }, 1500); return; }
+        }
+        requestAnimationFrame(tick);
+      };
+      tick();
+    } catch (x) {
+      scanMsg("Camera not available. Tap \"Use a photo instead\" and take a picture of the QR code.", "bad");
+    }
+  };
+  $("scanClose").onclick = stopScan;
+  $("scanFile").onchange = e => {
+    const file = e.target.files && e.target.files[0]; if (!file) return;
+    const img = new Image();
+    img.onload = () => {
+      const s = Math.min(1200, img.width), k = s / img.width;
+      const text = decode(img, s, Math.round(img.height * k));
+      URL.revokeObjectURL(img.src); e.target.value = "";
+      if (text) handleScan(text); else scanMsg("No QR code found in that photo. Try again closer.", "bad");
+    };
+    img.src = URL.createObjectURL(file);
   };
 
   // Link from the PDF or QR code: play.html#<id>=<CODE>

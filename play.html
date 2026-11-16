@@ -14,8 +14,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Vazirmatn:wght@500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20261116c">
-<link rel="stylesheet" href="play.css?v=20261116c">
+<link rel="stylesheet" href="styles.css?v=20261116d">
+<link rel="stylesheet" href="play.css?v=20261116d">
 </head>
 <body>
 <div class="wrap">
@@ -27,7 +27,16 @@
   </header>
 
   <div class="how" id="how">
-    <b>Already bought one?</b> Scan the QR code or tap the link in your PDF and it unlocks here. You can also tap <b>I have a code</b> on its card.
+    <b>Already bought one?</b> Scan the QR code in your PDF or type its code to unlock it here.
+    <div class="unlock-row">
+      <button class="pbtn go" type="button" id="scanBtn">📷 Scan QR code</button>
+      <button class="pbtn code" type="button" id="typeBtn">⌨️ Type a code</button>
+    </div>
+    <form class="codebox" id="anyCode" hidden>
+      <input type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXX-XXXX-XXXX" aria-label="Unlock code">
+      <button class="pbtn go" type="submit">Unlock</button>
+      <div class="err" role="alert"></div>
+    </form>
   </div>
   <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 
@@ -50,7 +59,7 @@
         <li>Tap <b>Add to Home screen</b> or <b>Install app</b>, then <b>Install</b>.</li>
       </ol>
       <h3>Then unlock your games in the app</h3>
-      <p>Open <b>FarsiLab</b> from your home screen and unlock each game once more: tap the link in your PDF or tap <b>I have a code</b> and type it. The app keeps its own unlocks, separate from the browser.</p>
+      <p>The app keeps its own unlocks, separate from the browser. Open <b>FarsiLab</b> from your home screen, tap <b>📷 Scan QR code</b> at the top and scan the QR code in your PDF (or tap <b>⌨️ Type a code</b>). Use the scan button inside the app, not the phone's camera app, which opens the browser instead.</p>
       <p class="small">Open each game once while you have internet. After that it also works offline, for example in the car or on a plane.</p>
     </div>
   </details>
@@ -64,6 +73,15 @@
   </div>
 </footer>
 
+<div class="scanner" id="scanner" hidden>
+  <div class="scan-box">
+    <div class="scan-head"><b>Scan the QR code in your PDF</b><button type="button" id="scanClose" aria-label="Close">✕</button></div>
+    <div class="scan-view"><video id="scanVideo" playsinline muted></video><div class="scan-frame"></div></div>
+    <p class="scan-msg" id="scanMsg">Point the camera at the QR code.</p>
+    <label class="pbtn code scan-photo">🖼️ Use a photo instead<input type="file" accept="image/*" capture="environment" id="scanFile" hidden></label>
+  </div>
+</div>
+
 <div class="player" id="player" hidden>
   <div class="player-bar">
     <button id="close" type="button">← Back to Play</button>
@@ -72,8 +90,9 @@
   <iframe id="frame" title="FarsiLab activity" allow="autoplay"></iframe>
 </div>
 
-<script src="packs.js?v=20261116c"></script>
-<script src="play.js?v=20261116c"></script>
+<script src="packs.js?v=20261116d"></script>
+<script src="jsqr.min.js?v=1" defer></script>
+<script src="play.js?v=20261116d"></script>
 <script>if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(() => {});</script>
 </body>
 </html>
