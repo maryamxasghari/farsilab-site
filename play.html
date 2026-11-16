@@ -14,8 +14,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Vazirmatn:wght@500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20261116b">
-<link rel="stylesheet" href="play.css?v=20261116b">
+<link rel="stylesheet" href="styles.css?v=20261116c">
+<link rel="stylesheet" href="play.css?v=20261116c">
 </head>
 <body>
 <div class="wrap">
@@ -32,6 +32,28 @@
   <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 
   <div class="play-grid" id="grid"></div>
+
+  <details class="install" id="install">
+    <summary><span class="ico">📲</span><span>Add FarsiLab to your home screen<span class="sub">Opens like an app, full screen, and works offline</span></span></summary>
+    <div class="steps">
+      <h3>iPhone and iPad (Safari)</h3>
+      <ol>
+        <li>Open this page in <b>Safari</b>.</li>
+        <li>Tap the <b>Share</b> button <span class="key">⬆️</span> (a square with an arrow). On newer iPhones, tap <b>•••</b> first, then <b>Share</b>.</li>
+        <li>Scroll down and tap <b>Add to Home Screen</b>.</li>
+        <li>Keep <b>Open as Web App</b> on, then tap <b>Add</b>.</li>
+      </ol>
+      <h3>Android (Chrome)</h3>
+      <ol>
+        <li>Open this page in <b>Chrome</b>.</li>
+        <li>Tap the menu <span class="key">⋮</span> at the top right.</li>
+        <li>Tap <b>Add to Home screen</b> or <b>Install app</b>, then <b>Install</b>.</li>
+      </ol>
+      <h3>Then unlock your games in the app</h3>
+      <p>Open <b>FarsiLab</b> from your home screen and unlock each game once more: tap the link in your PDF or tap <b>I have a code</b> and type it. The app keeps its own unlocks, separate from the browser.</p>
+      <p class="small">Open each game once while you have internet. After that it also works offline, for example in the car or on a plane.</p>
+    </div>
+  </details>
 
   <p class="center"><a class="back" href="index.html">← Back to home</a></p>
 </div>
@@ -50,7 +72,8 @@
   <iframe id="frame" title="FarsiLab activity" allow="autoplay"></iframe>
 </div>
 
-<script src="packs.js?v=20261116b"></script>
-<script src="play.js?v=20261116b"></script>
+<script src="packs.js?v=20261116c"></script>
+<script src="play.js?v=20261116c"></script>
+<script>if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(() => {});</script>
 </body>
 </html>

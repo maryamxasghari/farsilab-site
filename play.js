@@ -7,7 +7,7 @@
 const PLAY_ITEMS = [
   {
     id: "colors-game", kind: "Game", title: "Color game", fa: "بازی رنگ‌ها",
-    blurb: "Read the color word in Farsi and tap the right paint splash. Six colors, stars and a medal from Fifi.",
+    blurb: "Read the color word in Farsi and tap the right paint splash. Twelve colors, hints, stars and a medal from Fifi.",
     art: "blobs", bg: "#FFF1D0", etsy: "", soon: true
   },
   {
@@ -139,6 +139,8 @@ const PLAY_ITEMS = [
     }
   }
 
+  // Already opened from the home screen: no need to show the "Add to home screen" guide.
+  if (window.matchMedia("(display-mode: standalone)").matches || navigator.standalone) document.body.classList.add("standalone");
   render();
   if (!window.crypto || !crypto.subtle) toast("Please open this page with https:// in an up-to-date browser to unlock.", false);
   else fromLink();

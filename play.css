@@ -43,3 +43,19 @@ body.playing { overflow: hidden; }
 .codebox[hidden], .pbtn[hidden] { display: none; }
 .state.soon { color: var(--orange); font-size: 17px; }
 .how[hidden] { display: none; }
+
+/* Add to home screen guide */
+.install { max-width: 640px; margin: 26px auto 0; background: #fff; border-radius: 26px; box-shadow: var(--shadow); overflow: hidden; }
+.install summary { list-style: none; display: flex; align-items: center; gap: 14px; cursor: pointer; padding: 16px 20px; background: var(--teal); color: #fff; font-weight: 800; font-size: 19px; }
+.install summary::-webkit-details-marker { display: none; }
+.install summary::after { content: "▾"; margin-left: auto; font-size: 22px; transition: transform .2s; }
+.install[open] summary::after { transform: rotate(180deg); }
+.install .ico { width: 42px; height: 42px; border-radius: 50%; background: rgba(255,255,255,.22); display: grid; place-items: center; font-size: 22px; flex: none; }
+.install .sub { display: block; font-size: 14px; font-weight: 600; opacity: .92; }
+.install .steps { padding: 6px 22px 20px; }
+.install h3 { color: var(--pink); margin: 16px 0 4px; font-size: 19px; }
+.install ol { margin: 0; padding-left: 22px; }
+.install li { margin: 6px 0; }
+.install .key { display: inline-block; background: #f1efe9; border-radius: 8px; padding: 0 6px; }
+.install p { margin: 8px 0 0; }
+.standalone .install { display: none; }
