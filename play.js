@@ -14,6 +14,31 @@ const PLAY_ITEMS = [
     id: "trace-letters", kind: "Activity", title: "Trace the letters", fa: "تمرین نوشتن",
     blurb: "Trace big Farsi letters with a finger. Fifi checks the tracing and gives a star for each letter.",
     art: "آ ب", bg: "#DDF1F0", etsy: "", soon: true
+  },
+  {
+    id: "build-word", kind: "Activity", title: "Build the word", fa: "کلمه بساز",
+    blurb: "Put the letters in their places, right to left, and build animal words like فیل with Fifi.",
+    art: "ف ی ل", bg: "#FCE4EC", etsy: "", soon: true
+  },
+  {
+    id: "sort-baskets", kind: "Game", title: "Sort the colors", fa: "رنگ‌ها را جدا کن",
+    blurb: "Drag each fruit and friend into the basket of its color, red or yellow.",
+    art: "🧺", bg: "#FFF1D0", etsy: "", soon: true
+  },
+  {
+    id: "count-feed", kind: "Game", title: "Count and feed Fifi", fa: "بشمار و به فی‌فی بده",
+    blurb: "Fifi is hungry! Count the apples in Farsi and give her just the right number.",
+    art: "۱ ۲ ۳", bg: "#E8F5E9", etsy: "", soon: true
+  },
+  {
+    id: "shadow-match", kind: "Game", title: "Shadow match", fa: "سایه را پیدا کن",
+    blurb: "Put each animal on its shadow and learn its name in Farsi.",
+    art: "🦒", bg: "#E3F2FD", etsy: "", soon: true
+  },
+  {
+    id: "memory-pairs", kind: "Game", title: "Memory pairs", fa: "جفت‌ها را پیدا کن",
+    blurb: "Turn over two cards and match each animal picture with its Farsi word.",
+    art: "🃏", bg: "#F3E5F5", etsy: "", soon: true
   }
 ];
 

@@ -1,12 +1,12 @@
 // FarsiLab offline helper: keeps the Play page and its games on the device so they work without internet.
 // Pages and games: try the internet first (so updates arrive), use the saved copy when offline.
 // Fonts: use the saved copy first.
-const CACHE = "farsilab-v3";
+const CACHE = "farsilab-v4";
 const CORE = [
-  "./", "index.html", "play.html", "styles.css?v=20261116d", "play.css?v=20261116d", "play.js?v=20261116d", "packs.js?v=20261116d",
+  "./", "index.html", "play.html", "styles.css?v=20261116e", "play.css?v=20261116e", "play.js?v=20261116e", "packs.js?v=20261116e",
   "manifest.webmanifest?v=2", "assets/favicon.png", "assets/apple-touch-icon.png?v=2", "assets/icon-192.png?v=2", "assets/icon-512.png?v=2",
   "assets/fifi_logo_full.webp", "assets/fifi_jumping.webp", "assets/fifi_medal.webp",
-  "jsqr.min.js?v=1", "play/colors-game.bin", "play/trace-letters.bin"
+  "jsqr.min.js?v=1", "play/colors-game.bin", "play/trace-letters.bin", "play/build-word.bin", "play/sort-baskets.bin", "play/count-feed.bin", "play/shadow-match.bin", "play/memory-pairs.bin"
 ];
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(CACHE).then(c => Promise.all(CORE.map(u => c.add(u).catch(() => {})))).then(() => self.skipWaiting()));
