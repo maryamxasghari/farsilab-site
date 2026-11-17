@@ -74,10 +74,10 @@ h2 .fa { display: block; color: var(--pink); font-size: .7em; }
 /* Newsletter */
 .signup {
   background: #fff; border: 5px solid var(--sun); border-radius: 34px; padding: 30px 26px; box-shadow: var(--shadow);
-  display: grid; grid-template-columns: 1fr 190px; gap: 18px; align-items: center;
+  display: grid; grid-template-columns: 1fr 280px; gap: 18px; align-items: center;
 }
 .signup h2 { text-align: left; }
-.signup img { width: 190px; }
+.signup img { width: 280px; }
 .signup form { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
 .signup input[type=email] { flex: 1 1 240px; font: inherit; padding: 14px 18px; border-radius: 999px; border: 3px solid var(--teal); }
 .signup button { font: inherit; font-weight: 800; background: var(--pink); color: #fff; border: 0; border-radius: 999px; padding: 14px 26px; cursor: pointer; }
@@ -119,7 +119,7 @@ footer p { margin: 6px 0; max-width: 620px; }
 @media (max-width: 640px) {
   .signup { grid-template-columns: 1fr; text-align: center; }
   .signup h2 { text-align: center; }
-  .signup img { margin: 0 auto; width: 150px; }
+  .signup img { margin: 0 auto; width: 240px; }
 }
 @media (prefers-reduced-motion: reduce) { .fifi-hero { animation: none; } }
 
