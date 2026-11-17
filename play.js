@@ -44,6 +44,26 @@ const PLAY_ITEMS = [
     id: "numbers-game", kind: "Game", title: "Number game", fa: "بازی عددها",
     blurb: "Count the apples or read the Farsi number word, then tap the right Persian number from ۱ to ۱۰.",
     art: "۴ ۵ ۶", bg: "#E3F2FD", etsy: "", soon: true
+  },
+  {
+    id: "trace-numbers", kind: "Activity", title: "Trace the numbers", fa: "تمرین نوشتن عددها",
+    blurb: "Trace Persian numbers from ۱ to ۲۰ with your finger and see each number word.",
+    art: "۱۷", bg: "#FFF3E0", etsy: "", soon: true
+  },
+  {
+    id: "find-numbers", kind: "Game", title: "Find the numbers", fa: "عددها را پیدا کن",
+    blurb: "Find every copy of the number on the board, from ۱ to ۲۰.",
+    art: "🔍", bg: "#E8F5E9", etsy: "", soon: true
+  },
+  {
+    id: "color-numbers", kind: "Game", title: "Color the numbers", fa: "عددها را رنگ کن",
+    blurb: "Color all the same numbers with the same color until the board is a rainbow.",
+    art: "🎨", bg: "#FCE4EC", etsy: "", soon: true
+  },
+  {
+    id: "count-to-100", kind: "Game", title: "Count to 100", fa: "بشمار تا صد",
+    blurb: "Count apples in ten-frames from ۱۱ to ۲۰, then count bars of ten up to ۱۰۰.",
+    art: "۱۰۰", bg: "#E3F2FD", etsy: "", soon: true
   }
 ];
 
