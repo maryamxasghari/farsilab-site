@@ -26,12 +26,12 @@ const PLAY_ITEMS = [
     art: "🧺", bg: "#FFF1D0", etsy: "", soon: true
   },
   {
-    id: "count-feed", kind: "Game", title: "Count and feed Fifi", fa: "بشمار و به فی‌فی بده",
+    id: "count-feed", kind: "Game", title: "Count and feed Fifi", fa: "بشمار و به فی‌فی غذا بده",
     blurb: "Fifi is hungry! Count the apples in Farsi and give her just the right number.",
     art: "۱ ۲ ۳", bg: "#E8F5E9", etsy: "", soon: true
   },
   {
-    id: "shadow-match", kind: "Game", title: "Shadow match", fa: "سایه را پیدا کن",
+    id: "shadow-match", kind: "Game", title: "Shadow match", fa: "سایه‌ها را پیدا کن",
     blurb: "Put each animal on its shadow and learn its name in Farsi.",
     art: "🦒", bg: "#E3F2FD", etsy: "", soon: true
   },
