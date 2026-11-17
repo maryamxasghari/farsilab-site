@@ -39,7 +39,19 @@ const PLAY_ITEMS = [
     id: "memory-pairs", kind: "Game", title: "Memory pairs", fa: "جفت‌ها را پیدا کن",
     blurb: "Turn over two cards and match each animal picture with its Farsi word.",
     art: "🃏", bg: "#F3E5F5", etsy: "", soon: true
+  },
+  {
+    id: "numbers-game", kind: "Game", title: "Number game", fa: "بازی عددها",
+    blurb: "Count the apples or read the Farsi number word, then tap the right Persian number from ۱ to ۱۰.",
+    art: "۴ ۵ ۶", bg: "#E3F2FD", etsy: "", soon: true
   }
+];
+
+// Bundles: ONE code (and one QR) that unlocks several games at once, for packs and bundles.
+// play/<id>.bin holds the list of games and their codes, locked with the bundle's code (lock_play_bundle.py, private repo).
+// Link format is the same as for one game: play.html#<bundle id>=<CODE>
+const PLAY_BUNDLES = [
+  { id: "numbers-pack", title: "Numbers pack games" }
 ];
 
 (function () {
@@ -62,6 +74,21 @@ const PLAY_ITEMS = [
     const key = await crypto.subtle.deriveKey({ name: "PBKDF2", salt, iterations: ROUNDS, hash: "SHA-256" }, base, { name: "AES-GCM", length: 256 }, false, ["decrypt"]);
     const plain = await crypto.subtle.decrypt({ name: "AES-GCM", iv }, key, data);
     return new TextDecoder().decode(plain);
+  }
+
+  // Bundle: returns the list of games it opened (and remembers their codes), or throws if the code is wrong.
+  const bundle = id => PLAY_BUNDLES.find(x => x.id === id);
+  async function unlockBundle(id, code) {
+    const list = JSON.parse(await unlock(id, code)).items || {};
+    const opened = [];
+    Object.keys(list).forEach(k => { const it = item(k); if (it) { codes[k] = norm(list[k]); opened.push(it); } });
+    save();
+    return opened;
+  }
+  function bundleDone(b, opened) {
+    render();
+    toast("🎉 " + opened.length + " games are unlocked on this device: " + opened.map(x => x.title).join(", ") + ". Tap Play.", true);
+    const card = opened[0] && $("card-" + opened[0].id); if (card) card.scrollIntoView({ behavior: "smooth", block: "center" });
   }
 
   function toast(text, ok) {
@@ -146,6 +173,12 @@ const PLAY_ITEMS = [
 
   // Unlock with just a code: try it on every item that is not unlocked yet.
   async function unlockAny(code, id) {
+    if (!id || bundle(id)) {
+      for (const b of PLAY_BUNDLES.filter(x => !id || x.id === id)) {
+        try { const opened = await unlockBundle(b.id, code); if (opened.length) return { bundle: b, opened }; } catch (x) { if (x.message === "missing") throw x; }
+      }
+      if (id) return null;
+    }
     const list = id ? PLAY_ITEMS.filter(x => x.id === id) : PLAY_ITEMS.filter(x => !codes[x.id]);
     for (const it of list) {
       try { await unlock(it.id, code); codes[it.id] = norm(code); save(); return it; } catch (x) { if (x.message === "missing") throw x; }
@@ -176,7 +209,8 @@ const PLAY_ITEMS = [
     try {
       const it = await unlockAny(input.value);
       btn.disabled = false; btn.textContent = "Unlock";
-      if (it) { input.value = ""; f.hidden = true; unlocked(it); }
+      if (it && it.bundle) { input.value = ""; f.hidden = true; bundleDone(it.bundle, it.opened); }
+      else if (it) { input.value = ""; f.hidden = true; unlocked(it); }
       else err.textContent = "That code does not open any game here. Check the code in your PDF.";
     } catch (x) { btn.disabled = false; btn.textContent = "Unlock"; err.textContent = "Could not check it. Check your internet and try again."; }
   };
@@ -194,7 +228,8 @@ const PLAY_ITEMS = [
     if (!r) { scanMsg("That QR code is not a FarsiLab unlock code.", "bad"); return false; }
     scanMsg("Unlocking…", "ok");
     try {
-      const it = await unlockAny(r.code, r.id && item(r.id) ? r.id : null);
+      const it = await unlockAny(r.code, r.id && (item(r.id) || bundle(r.id)) ? r.id : null);
+      if (it && it.bundle) { stopScan(); bundleDone(it.bundle, it.opened); return true; }
       if (it) { stopScan(); unlocked(it); return true; }
       scanMsg("This code does not open any game here.", "bad"); return false;
     } catch (x) { scanMsg("Could not check it. Check your internet and try again.", "bad"); return false; }
@@ -244,6 +279,13 @@ const PLAY_ITEMS = [
     const m = h.match(/^([a-z0-9-]+)=(.+)$/i);
     if (!m) return;
     try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {}
+    const b = bundle(m[1]);
+    if (b) {
+      toast("Unlocking " + b.title + "…", true);
+      try { bundleDone(b, await unlockBundle(b.id, m[2])); }
+      catch (x) { toast(x.message === "missing" ? "Could not load it. Check your internet and try again." : "This link's code does not work. Check the link in your PDF.", false); }
+      return;
+    }
     const it = item(m[1]);
     if (!it) { toast("This link does not match a game or activity here. Check the link in your PDF.", false); return; }
     toast("Unlocking " + it.title + "…", true);
