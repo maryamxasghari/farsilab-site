@@ -64,6 +64,26 @@ const PLAY_ITEMS = [
     id: "count-to-100", kind: "Game", title: "Count to 100", fa: "بشمار تا صد",
     blurb: "Count apples in ten-frames from ۱۱ to ۲۰, then count bars of ten up to ۱۰۰.",
     art: "۱۰۰", bg: "#E3F2FD", etsy: "", soon: true
+  },
+  {
+    id: "yalda-memory", kind: "Game", title: "Yalda memory pairs", fa: "جفت‌های یلدا",
+    blurb: "Turn over two cards and match each Yalda picture, like انار and هندوانه, with its Farsi word.",
+    art: "🍉", bg: "#FCE4EC", etsy: "", soon: true
+  },
+  {
+    id: "yalda-shadow", kind: "Game", title: "Yalda shadows", fa: "سایه‌های یلدا",
+    blurb: "Put the pomegranate, candle, moon and other Yalda things on their shadows and hear their Farsi names.",
+    art: "🕯️", bg: "#E3F2FD", etsy: "", soon: true
+  },
+  {
+    id: "yalda-word", kind: "Activity", title: "Build Yalda words", fa: "کلمه‌های یلدا را بساز",
+    blurb: "Put the letters in their places, right to left, and build Yalda words like انار and شمع.",
+    art: "ا ن ا ر", bg: "#FFF1D0", etsy: "", soon: true
+  },
+  {
+    id: "yalda-story", kind: "Story", title: "Fifi's Yalda Night (read-aloud story)", fa: "شب یلدای فی‌فی",
+    blurb: "A 10-page read-aloud story about Yalda night with Fifi and her family. Tap to hear each page.",
+    art: "🌙", bg: "#E8EAF6", etsy: "", soon: true
   }
 ];
 
@@ -71,7 +91,8 @@ const PLAY_ITEMS = [
 // play/<id>.bin holds the list of games and their codes, locked with the bundle's code (lock_play_bundle.py, private repo).
 // Link format is the same as for one game: play.html#<bundle id>=<CODE>
 const PLAY_BUNDLES = [
-  { id: "numbers-pack", title: "Numbers pack games" }
+  { id: "numbers-pack", title: "Numbers pack games" },
+  { id: "yalda-pack", title: "Yalda pack games" }
 ];
 
 (function () {

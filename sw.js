@@ -1,12 +1,12 @@
 // FarsiLab offline helper: keeps the Play page and its games on the device so they work without internet.
 // Pages and games: try the internet first (so updates arrive), use the saved copy when offline.
 // Fonts: use the saved copy first.
-const CACHE = "farsilab-v7";
+const CACHE = "farsilab-v8";
 const CORE = [
-  "./", "index.html", "play.html", "styles.css?v=20261117b", "play.css?v=20261117b", "play.js?v=20261117b", "packs.js?v=20261117b",
+  "./", "index.html", "play.html", "styles.css?v=20261118y", "play.css?v=20261118y", "play.js?v=20261118y", "packs.js?v=20261118y",
   "manifest.webmanifest?v=2", "assets/favicon.png", "assets/apple-touch-icon.png?v=2", "assets/icon-192.png?v=2", "assets/icon-512.png?v=2",
   "assets/fifi_logo_full.webp", "assets/fifi_jumping.webp", "assets/fifi_medal.webp",
-  "jsqr.min.js?v=1", "play/colors-game.bin", "play/trace-letters.bin", "play/build-word.bin", "play/sort-baskets.bin", "play/count-feed.bin", "play/shadow-match.bin", "play/memory-pairs.bin", "play/numbers-game.bin", "play/numbers-pack.bin", "play/trace-numbers.bin", "play/find-numbers.bin", "play/color-numbers.bin", "play/count-to-100.bin"
+  "jsqr.min.js?v=1", "play/colors-game.bin", "play/trace-letters.bin", "play/build-word.bin", "play/sort-baskets.bin", "play/count-feed.bin", "play/shadow-match.bin", "play/memory-pairs.bin", "play/numbers-game.bin", "play/numbers-pack.bin", "play/trace-numbers.bin", "play/find-numbers.bin", "play/color-numbers.bin", "play/count-to-100.bin", "play/yalda-memory.bin", "play/yalda-shadow.bin", "play/yalda-word.bin", "play/yalda-story.bin", "play/yalda-pack.bin"
 ];
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(CACHE).then(c => Promise.all(CORE.map(u => c.add(u).catch(() => {})))).then(() => self.skipWaiting()));
