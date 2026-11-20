@@ -1,7 +1,7 @@
 // FarsiLab offline helper: keeps the Play page and its games on the device so they work without internet.
 // Pages and games: try the internet first (so updates arrive), use the saved copy when offline.
 // Fonts: use the saved copy first.
-const CACHE = "farsilab-v10";
+const CACHE = "farsilab-v11";
 const CORE = [
   "./", "index.html", "play.html", "songs.html", "assets/song_fifi_counts.webp", "styles.css?v=20261118z", "play.css?v=20261118z", "play.js?v=20261118z", "packs.js?v=20261118z",
   "manifest.webmanifest?v=2", "assets/favicon.png", "assets/apple-touch-icon.png?v=2", "assets/icon-192.png?v=2", "assets/icon-512.png?v=2",
