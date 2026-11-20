@@ -68,7 +68,7 @@ const PLAY_ITEMS = [
   {
     id: "number-cards", kind: "Cards", title: "Talking number cards", fa: "کارت‌های عدد",
     blurb: "Swipe through the numbers ۰ to ۱۰۰ with Fifi and tap to hear each number, or count one sun, two eyes, three balloons.",
-    art: "۱۲۳", bg: "#FFF3E0", etsy: "", soon: true
+    art: "۱۲۳", bg: "#FFF3E0", etsy: "https://www.etsy.com/listing/510307805/farsipersian-numbers-flashcards-1-10"
   },
   {
     id: "numbers-story", kind: "Story", title: "Fifi counts (read-aloud story)", fa: "فی‌فی می‌شمارد",
