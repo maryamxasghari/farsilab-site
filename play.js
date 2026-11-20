@@ -66,6 +66,16 @@ const PLAY_ITEMS = [
     art: "۱۰۰", bg: "#E3F2FD", etsy: "", soon: true
   },
   {
+    id: "number-cards", kind: "Cards", title: "Talking number cards", fa: "کارت‌های عدد",
+    blurb: "Swipe through the numbers ۰ to ۱۰۰ with Fifi and tap to hear each number, or count one sun, two eyes, three balloons.",
+    art: "۱۲۳", bg: "#FFF3E0", etsy: "", soon: true
+  },
+  {
+    id: "numbers-story", kind: "Story", title: "Fifi counts (read-aloud story)", fa: "فی‌فی می‌شمارد",
+    blurb: "A 12-page read-aloud story: count from one to ten with Fifi through her day. Tap to hear each page.",
+    art: "📖", bg: "#E8F5E9", etsy: "", soon: true
+  },
+  {
     id: "yalda-memory", kind: "Game", title: "Yalda memory pairs", fa: "جفت‌های یلدا",
     blurb: "Turn over two cards and match each Yalda picture, like انار and هندوانه, with its Farsi word.",
     art: "🍉", bg: "#FCE4EC", etsy: "", soon: true
