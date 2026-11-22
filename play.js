@@ -94,6 +94,26 @@ const PLAY_ITEMS = [
     id: "yalda-story", kind: "Story", title: "Fifi's Yalda Night (read-aloud story)", fa: "شب یلدای فی‌فی",
     blurb: "A 10-page read-aloud story about Yalda night with Fifi and her family. Tap to hear each page.",
     art: "🌙", bg: "#E8EAF6", etsy: "", soon: true
+  },
+  {
+    id: "yalda-count", kind: "Game", title: "Count Yalda things", fa: "بشمار!",
+    blurb: "Count the pomegranates, candles and stars, then tap the Farsi number from ۱ to ۱۰.",
+    art: "۵", bg: "#FFF3E0", etsy: "", soon: true
+  },
+  {
+    id: "yalda-color", kind: "Activity", title: "Yalda coloring", fa: "رنگ‌آمیزی یلدا",
+    blurb: "Pick a color and tap inside a shape to fill it. Color Fifi's Yalda night, the korsi, the candle and more, then save your picture.",
+    art: "🎨", bg: "#F3E5F5", etsy: "", soon: true
+  },
+  {
+    id: "yalda-search", kind: "Game", title: "Yalda word search", fa: "کلمه‌ها را پیدا کن",
+    blurb: "Slide your finger across the letters, or tap the first and last letter, to find Yalda words like شب and انار.",
+    art: "ش ب", bg: "#E0F2F1", etsy: "", soon: true
+  },
+  {
+    id: "yalda-sh", kind: "Game", title: "Find the sh sound", fa: "صدای «ش» را پیدا کن!",
+    blurb: "Which pictures have the sound ش? Find شمع, موش, کفش and more.",
+    art: "ش", bg: "#FCE4EC", etsy: "", soon: true
   }
 ];
 
