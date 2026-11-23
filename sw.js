@@ -5,7 +5,7 @@ const CACHE = "farsilab-v16";
 const CORE = [
   "./", "index.html", "play.html", "songs.html", "assets/song_fifi_counts.webp", "styles.css?v=20261122c", "play.css?v=20261122a", "play.js?v=20261122a", "packs.js?v=20261122a",
   "manifest.webmanifest?v=2", "assets/favicon.png", "assets/apple-touch-icon.png?v=2", "assets/icon-192.png?v=2", "assets/icon-512.png?v=2",
-  "assets/fifi_logo_full.webp", "assets/fifi_jumping.webp", "assets/fifi_medal.webp",
+  "assets/fifi_logo_full.webp", "assets/fifi_hello.webp", "assets/fifi_jumping.webp", "assets/fifi_medal.webp",
   "jsqr.min.js?v=1", "play/colors-game.bin", "play/trace-letters.bin", "play/build-word.bin", "play/sort-baskets.bin", "play/count-feed.bin", "play/shadow-match.bin", "play/memory-pairs.bin", "play/numbers-game.bin", "play/numbers-pack.bin", "play/trace-numbers.bin", "play/find-numbers.bin", "play/color-numbers.bin", "play/count-to-100.bin", "play/number-cards.bin", "play/numbers-story.bin", "play/yalda-memory.bin", "play/yalda-shadow.bin", "play/yalda-word.bin", "play/yalda-story.bin", "play/yalda-pack.bin", "play/yalda-count.bin", "play/yalda-color.bin", "play/yalda-search.bin", "play/yalda-sh.bin"
 ];
 self.addEventListener("install", e => {
